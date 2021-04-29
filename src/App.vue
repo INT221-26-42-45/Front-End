@@ -3,12 +3,13 @@
     <img class="ml-4 w-24 h-12" alt="logo" src="./assets/logo.png" />
     <div class="pt-2 pr-4 w-full flex justify-end space-x-2">
       <div class="space-x-4">
-      <router-link to="/">Home</router-link> 
-      <router-link to="/product">Product</router-link> 
-      <router-link to="/contact-us">Contact Us</router-link>
+      <router-link to="/">HOME</router-link> 
+      <router-link to="/product">PRODUCT</router-link> 
+      <router-link to="/contact-us">CONTACT US</router-link>
       </div>
     </div>
   </div>
+  
   <router-view/>
 </template>
 
@@ -22,7 +23,7 @@
 }
 
 #nav {
-  padding: 18px;
+  padding: 16px;
   font-size: 20px;
 }
 

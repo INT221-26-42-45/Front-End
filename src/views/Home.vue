@@ -84,9 +84,9 @@
   </div>
 
   <footer class="bg-black mt-12">
-    <div class="flex justify-center flex-col flex-wrap p-1 py-8 ">
-      <div class="flex flex-wrap flex-grow mt-10 -mb-8 text-center md:pl-20 md:mt-0 md:text-left ">
-        <div class="w-full px-2 lg:w-1/4 md:w-1/2">
+     <div class="container flex flex-col justify-center p-6 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap ">
+      <div class="flex flex-row justify-center space-x-4 mt-6 -mb-6 text-left md:pl-20 md:mt-0 ">
+        <div class="w-full px-2 pl-0 lg:w-1/4 md:w-1/2">
             <h1 class="mb-3 text-lg font-bold tracking-widest text-white uppercase title-font">Products
             </h1>
             <nav class="mb-8 list-none">
@@ -94,10 +94,10 @@
                 <p class="text-sm text-white">Nike Sneaker</p>
               </li>
               <li>
-                <p class="text-sm text-white">Adidas Sneaker</p>
+                <p class="text-sm mt-2 text-white">Adidas Sneaker</p>
               </li>
               <li>
-                <p class="text-sm text-white">NB Sneaker</p>
+                <p class="text-sm mt-2 text-white">NB Sneaker</p>
               </li>
             </nav>
         </div>
@@ -109,34 +109,33 @@
                   <p class="text-sm text-white">Nike Air</p>
                 </li>
                 <li>
-                  <p class="text-sm text-white">Sperstar NMD</p>
+                  <p class="text-sm mt-2 text-white">Sperstar NMD</p>
                 </li>
                 <li>
-                  <p class="text-sm text-white">574</p>
+                  <p class="text-sm mt-2 text-white">574</p>
                 </li>
               </nav>
         </div>
-        <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-              <h1 class="mb-3 text-lg font-bold tracking-widest text-white  uppercase title-font">Support
-              </h1>
-              <nav class="mb-8 list-none">
-                <li>
-                  <p class="text-sm text-white">Nike</p>
-                </li>
-                <li>
-                  <p class="text-sm text-white">Adidas</p>
-                </li>
-                <li>
-                  <p class="text-sm text-white">New Balance</p>
-                </li>
-              </nav>
+        <div class="w-full px-2 pl-10 lg:w-1/4 md:w-1/2">
+            <h1 class="mb-3 text-lg font-bold tracking-widest text-white uppercase title-font">Support
+            </h1>
+            <nav class="mb-8 list-none">
+              <li>
+                <p class="text-sm text-white">Nike</p>
+              </li>
+              <li>
+                <p class="text-sm mt-2 text-white">Adidas</p>
+              </li>
+              <li>
+                <p class="text-sm mt-2 text-white">New Balance</p>
+              </li>
+            </nav>
         </div>
-        <div class="w-full pt-12 lg:w-1/4 md:w-1/2">
+        <div class="w-full mt-16 pl-2 lg:w-1/4 md:w-1/2">
           <img class="w-24 h-12" alt="logofooter" src="../assets/logo.png" />
         </div>
       </div>
-    </div>
-            
+    </div>         
   </footer>
 
 
