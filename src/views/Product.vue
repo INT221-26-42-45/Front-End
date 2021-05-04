@@ -1,14 +1,15 @@
 <template>
-  <div id="menu" class="fixed bg-white p-5 mt-20 w-full shadow-md ">
-    <div class="pt-2 pr-4 w-full flex justify-around">
-      <h1 class="uppercase"> 
-        <router-link to="/product">View Products</router-link> 
-      </h1>
-      <h1 class="uppercase">
-        <router-link to="/">
-           Add Products 
+  <div class="fixed p-5 mt-20 w-full ">
+    <div class="pt-1 w-full flex justify-center space-x-16">
+        <router-link to="/product">
+          <base-button buttonLabel="VIEW PRODUCTS" buttonColor="bg-pkras"></base-button>
+        </router-link> 
+        <router-link to="/product">
+          <base-button @click="toggleAddProduct" buttonLabel="ADD PRODUCTS" buttonColor="bg-pkras"></base-button>
         </router-link>
-      </h1>
+
+        <add-product v-if="showAddProductModal" @save-product="addNewProduct" @close="toggleAddProduct"></add-product>
+        <div v-if="showAddProductModal" class="show-modal"></div>
     </div>
   </div>
 
@@ -69,14 +70,64 @@
 
 </template>
 
+<script>
+
+import AddProduct from '../components/AddProduct.vue';
+
+export default {
+  components: {
+    AddProduct
+  },
+
+  data(){
+    return {
+      url: "http://localhost:5000/products",
+      products: [],
+      showAddProductModal: false
+    };
+  },
+
+  methods: {
+    toggleAddProduct: function() {
+      this.showAddProductModal = !this.showAddProductModal;
+    },
+
+    async addNewProduct(newProduct){
+      try {
+        const res = await fetch(this.url, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            productName: newProduct.productName,
+            productType: newProduct.productType,
+            productPrice: newProduct.productPrice,
+            productSize: newProduct.productSize,
+            productDate: newProduct.productDate,
+            productDetail: newProduct.productDetail,
+            brand: newProduct.brand,
+            color: newProduct.color
+          }),
+        });
+        const data = await res.json();
+        this.products = [...this.products, data];
+      } catch (error) {
+        console.log(`Could not add ${error}`);
+      }
+      this.enteredProductName=''
+      this.enteredProductType=''
+      this.enteredProductPrice=''
+      this.enteredProductSize=''
+      this.enteredProductDate=''
+      this.enteredProductDetail=''
+      this.brand=''
+      this.color=''
+    }
+  },
+  
+}
+</script>
 <style>
 
-#menu a {
-  font-weight: bold;
-  color: #9EAAA7;
-}
-
-#menu a.router-link-exact-active {
-  color: #FF008C;
-}
 </style>
