@@ -1,15 +1,19 @@
 <template>
-  <div id="nav" class="fixed bg-black flex flex-start w-full">
-    <img class="ml-4 w-24 h-12" alt="logo" src="./assets/logo.png" />
-    <div class="pt-2 pr-4 w-full flex justify-end space-x-2">
+  <div id="nav" class="fixed z-40 bg-black flex flex-start w-full">
+    <router-link to="/">
+      <img class="ml-4 w-24 h-12" alt="logo" src="./assets/logo.png" />
+    </router-link>
+
+    <div class="pt-2 pr-4 w-full flex justify-end">
       <div class="space-x-4">
       <router-link to="/">HOME</router-link> 
       <router-link to="/product">PRODUCT</router-link> 
       <router-link to="/contact-us">CONTACT US</router-link>
       </div>
-    </div>
+    </div> 
   </div>
-  
+
+
   <router-view/>
 </template>
 

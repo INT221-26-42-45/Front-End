@@ -1,10 +1,80 @@
 {
-    "skorProduct": [
-      {
-        "id": 1,
-        "date": "16/04/2021",
-        "activity": "Do homework",
-        "time": "10 am."
-      }
-    ]
-  }
+  "products": [
+    {
+      "id": 1,
+      "productName": "STAN SMITH",
+      "productType": "Men/Women",
+      "productPrice": "3200",
+      "productSize": "35.5-44",
+      "productDate": "2020-08-13",
+      "productDetail": "Trying to decide between sporty casual and dressed-up glam? Why not do both? These adidas Stan Smith shoes have the same buttery-soft leather upper as the 1971 original, dressed up with sparkling crystals from Swarovski.",
+      "productimg": "Stansmith.png",
+      "brand": "Adidas",
+      "color": "Green"
+    },
+    {
+      "id": 2,
+      "productName": "NMD R1",
+      "productType": "Men/Women",
+      "productPrice": "4600",
+      "productSize": "35.5-44",
+      "productDate": "2020-06-04",
+      "productDetail": "the NMD legacy in these adidas NMD_R1 Shoes. Plush Boost cushioning keeps your city adventure feeling like you are walking on clouds. And since your head is sometimes up there, it is not a bad place for your feet to be too. Great for those sunup to sundown days, the soft knit textile upper doubles down on the comfort.",
+      "productimg": "Nmdr.png",
+      "brand": "Adidas",
+      "color": "Black"
+    },
+    {
+      "productName": "dd",
+      "productType": "dd",
+      "productPrice": "dd",
+      "productSize": "dd",
+      "productDate": "dd",
+      "productDetail": "dd",
+      "brand": "New Balance",
+      "color": "",
+      "id": 3
+    },
+    {
+      "productName": "www",
+      "productType": "www",
+      "productPrice": "www",
+      "productSize": "ww",
+      "productDate": "ww",
+      "productDetail": "www",
+      "brand": "Adidas",
+      "color": "",
+      "id": 4
+    },
+    {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 5
+    },
+    {
+      "productType": "dd",
+      "productPrice": "dd",
+      "productSize": "dd",
+      "productDate": "dd",
+      "productDetail": "dd",
+      "brand": "Nike",
+      "color": "",
+      "id": 6
+    },
+    {
+      "productType": "aa",
+      "productPrice": "aa",
+      "productSize": "aa",
+      "productDate": "aa",
+      "productDetail": "aa",
+      "brand": "Nike",
+      "color": "",
+      "id": 7
+    }
+  ]
+}
