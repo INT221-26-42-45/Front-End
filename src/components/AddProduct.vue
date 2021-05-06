@@ -1,10 +1,7 @@
 <template>
     <div>
         <div class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex justify-center items-center mb-4">
-            <div class=" h-96 border-0 rounded-md shadow-lg flex flex-col w-3/4 bg-darkgray outline-none focus:outline-none">
-                <div class="flex justify-end">
-                    <button class="close" type="button" @click="closeModal"> X </button>
-                </div>
+            <div class=" h-96 border-0 rounded-md shadow-lg flex flex-col w-2/4 bg-darkgray outline-none focus:outline-none">
                 <div class="pt-3 px-64">
                     <h3 class="text-3xl uppercase text-white">skór</h3>
                 </div>
@@ -16,7 +13,7 @@
                             <div>
                                 <label class="label">Product name: </label>
                                 <input  type="text" id="productName" name="productName"
-                                v-model.trim="enteredProductName" @blur="validateProductName" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2 focus:ring-2 focus:ring-orange"/>
+                                v-model.trim="productName" @blur="validateProductName" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2 focus:ring-2 focus:ring-orange"/>
                                 <p v-if="invalidProductName" class="error">"Please enter product name"</p>
                             </div>
 
@@ -73,18 +70,28 @@
                             <div class=" pt-1.5">
                                 <label class="label">Color: </label>
                                 <div class="flex flex-row">
-                                    <input type="checkbox" class="h-10 w-10 bg-gray-300 border-2 border-black appearance-none rounded-md checked:bg-black checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-white appearance-none rounded-md checked:bg-white checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-gray-500 appearance-none rounded-md checked:bg-gray-500 checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-green-500 appearance-none rounded-md checked:bg-green-500 checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-blue-500 appearance-none rounded-md checked:bg-blue-500 checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-blue-900 appearance-none rounded-md checked:bg-blue-900 checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-purple-600 appearance-none rounded-md checked:bg-purple-600 checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-pink appearance-none rounded-md checked:bg-pink checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-red-600 appearance-none rounded-md checked:bg-red-600 checked:border-transparent">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-yellow-300 appearance-none rounded-md checked:bg-yellow-300 checked:border-transparent">
+                                    <input type="checkbox" id="black" class="h-10 w-10 bg-gray-300 border-2 border-black appearance-none rounded-md checked:bg-black checked:border-transparent"
+                                        value="black" v-model="color" :checked="color === 'black'">
+                                    <input type="checkbox" id="white" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-white appearance-none rounded-md checked:bg-white checked:border-transparent"
+                                        value="white" v-model="color" :checked="color === 'white'">
+                                    <input type="checkbox" id="gray" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-gray-500 appearance-none rounded-md checked:bg-gray-500 checked:border-transparent"
+                                        value="gray" v-model="color" :checked="color === 'gray'">
+                                    <input type="checkbox" id="green" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-green-500 appearance-none rounded-md checked:bg-green-500 checked:border-transparent"
+                                        value="green" v-model="color" :checked="color === 'green'">
+                                    <input type="checkbox" id="blue" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-blue-500 appearance-none rounded-md checked:bg-blue-500 checked:border-transparent"
+                                        value="blue" v-model="color" :checked="color === 'blue'">
+                                    <input type="checkbox" id="vavy blue" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-blue-900 appearance-none rounded-md checked:bg-blue-900 checked:border-transparent"
+                                        value="navy blue" v-model="color" :checked="color === 'navy blue'">
+                                    <input type="checkbox" id="purple" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-purple-600 appearance-none rounded-md checked:bg-purple-600 checked:border-transparent"
+                                        value="purple" v-model="color" :checked="color === 'purple'">
+                                    <input type="checkbox" id="pink" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-pink appearance-none rounded-md checked:bg-pink checked:border-transparent"
+                                        value="pink" v-model="color" :checked="color === 'pink'">
+                                    <input type="checkbox" id="red" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-red-600 appearance-none rounded-md checked:bg-red-600 checked:border-transparent"
+                                        value="red" v-model="color" :checked="color === 'red'">
+                                    <input type="checkbox" id="yellow" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-yellow-300 appearance-none rounded-md checked:bg-yellow-300 checked:border-transparent"
+                                        value="yellow" v-model="color" :checked="color === 'yellow'">
                                 </div>
-                                <p v-if="invalidColor" class="error">"Please select product color"</p>
+                                <p v-if="invalidColor" class="error">"Please choose color of product"</p>
                             </div>
                         </div>
                     </div>
@@ -97,8 +104,7 @@
                         </div>
                     </div>
 
-                    <div class=" flex flex-row justify-center space-x-2 mt-4 mb-4">
-                        <base-button @click="closeModal" buttonLabel="CANCEL" buttonColor="bg-white" txtColor="text-darkgray" buttonBorder=" border-orange"></base-button>
+                    <div class=" flex flex-row justify-center mt-4 mb-4">
                         <base-button buttonLabel="ADD" buttonColor="bg-pkras" txtColor="text-darkgray"></base-button>
                     </div>
                 </form>
@@ -113,22 +119,68 @@ import imageUpload from "../assets/imageupload.png";
 
 export default {
     name: "add-product",
-    props: ["imageDb", "name", "type", "price", "size", "date", "detail", "brands", "colors"],
-    emits: ["close", "save-product"],
+    props: {
+        oldId: {
+            type: Number,
+            required: false,
+            default: null
+        },
+        oldProductName: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        oldProductType: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        oldProductPrice: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        oldProductSize: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        oldProductDate: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        oldProductDetail: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        oldBrand: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        oldColor: {
+            type: String,
+            required: false,
+            default: null
+        }
+    },
+            
+    emits: ["save-product"],
 
     data() {
         return {
             imageUpload: this.imageDb ? this.imageDb : imageUpload,
-            url: 'http://localhost:5000/product',
-            products: [ ],
-            proroductName: this.name,
-            productType: this.type,
-            productPrice: this.price,
-            productSize: this.size,
-            productDate: this.date,
-            productDetail: this.detail,
-            brand: this.brands,
-            color: this.color,
+            id: this.oldId,
+            proroductName: this.oldProductName,
+            productType: this.oldProductType,
+            productPrice: this.oldProductPrice,
+            productSize: this.oldProductSize,
+            productDate: this.oldProductDate,
+            productDetail: this.oldProductDetail,
+            brand: this.oldBrand,
+            color: this.oldColor,
             invalidProductName: false,
             invalidProductType: false,
             invalidProductPrice: false,
@@ -141,10 +193,6 @@ export default {
     },
 
     methods: {
-        closeModal(){
-            this.$emit("close", true);
-        },
-
         uploadPhoto(u) {
             const file = u.target.files[0] || u.dataTransfer.files[0];
             const reader = new FileReader();
@@ -162,7 +210,7 @@ export default {
             this.invalidProductDate = this.productDate === '' ? true : false;
             this.invalidProductDetail = this.pProductDetail === '' ? true : false;
             this.invalidBrand = this.brand === '' ? true : false;
-            this.invalidColor = this.color === '' ? true : false;
+            this.invalidColor = this.color === null ? true : false;
             console.log(`productName: ${this.productName}`)
             console.log(`productType: ${this.productType}`)
             console.log(`productPrice: ${this.productPrice}`)
@@ -180,37 +228,32 @@ export default {
             console.log(`invalidBrand: ${this.invalidBrand}`)
             console.log(`invalidColor: ${this.invalidColor}`)
 
-            if (this.productName !== '' && this.productType !== '' &&
-                this.productPrice !== '' && this.productSize !== '' &&
-                this.productDetail !== '' && this.productDate !== '' &&
-                this.brand !== '' && this.color !== '') {
-                    this.addNewProduct({
+            if (!this.invalidProductName && !this.invalidProductType &&
+                !this.invalidProductPrice && !this.invalidProductSize &&
+                !this.invalidProductDate && !this.invalidProductDetail &&
+                !this.invalidBrand && !this.invalidColor) {
+                    const newProductSubmitted = {
+                        id: this.id,
                         productName: this.productName,
                         productType: this.productType,
                         productPrice: this.productPrice,
                         productSize: this.productSize,
                         productDate: this.productDate,
-                        productDetail: this.productDetail
-                    })                 
-            } else {
-                this.saveProduct();
-                this.closeModal();
-            }
-        },
-
-        saveProduct(){
-            let products = {
-                productName: this.productName,
-                productType: this.productType,
-                productPrice: this.productPrice,
-                productSize: this.productSize,
-                productDate: this.productDate,
-                productDetail: this.productDetail,
-                productImg: this.imageUpload,
-                brand: this.brand,
-                color: this.color
-            };
-            this.$emit("save-product", products);
+                        productDetail: this.productDetail,
+                        brand: this.brand,
+                        color: this.color
+                    }
+                    this.id = ''
+                    this.productName = ''
+                    this.productType = ''
+                    this.productPrice = ''
+                    this.productSize = ''
+                    this.productDate = ''
+                    this.productDetail = ''
+                    this.brand = ''
+                    this.color = null
+                    this.$emit('save-product', newProductSubmitted)        
+            } 
         },
 
         validateProductName(){

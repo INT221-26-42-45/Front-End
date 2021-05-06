@@ -1,5 +1,5 @@
 {
-  "products": [
+  "product": [
     {
       "id": 1,
       "productName": "STAN SMITH",
@@ -8,7 +8,7 @@
       "productSize": "35.5-44",
       "productDate": "2020-08-13",
       "productDetail": "Trying to decide between sporty casual and dressed-up glam? Why not do both? These adidas Stan Smith shoes have the same buttery-soft leather upper as the 1971 original, dressed up with sparkling crystals from Swarovski.",
-      "productimg": "Stansmith.png",
+      "productImg": "Stansmith.png",
       "brand": "Adidas",
       "color": "Green"
     },
@@ -20,29 +20,27 @@
       "productSize": "35.5-44",
       "productDate": "2020-06-04",
       "productDetail": "the NMD legacy in these adidas NMD_R1 Shoes. Plush Boost cushioning keeps your city adventure feeling like you are walking on clouds. And since your head is sometimes up there, it is not a bad place for your feet to be too. Great for those sunup to sundown days, the soft knit textile upper doubles down on the comfort.",
-      "productimg": "Nmdr.png",
+      "productImg": "Nmdr.png",
       "brand": "Adidas",
       "color": "Black"
     },
     {
-      "productName": "dd",
-      "productType": "dd",
-      "productPrice": "dd",
-      "productSize": "dd",
-      "productDate": "dd",
-      "productDetail": "dd",
-      "brand": "New Balance",
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
       "color": "",
       "id": 3
     },
     {
-      "productName": "www",
-      "productType": "www",
-      "productPrice": "www",
-      "productSize": "ww",
-      "productDate": "ww",
-      "productDetail": "www",
-      "brand": "Adidas",
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
       "color": "",
       "id": 4
     },
@@ -57,16 +55,27 @@
       "id": 5
     },
     {
-      "productType": "dd",
-      "productPrice": "dd",
-      "productSize": "dd",
-      "productDate": "dd",
-      "productDetail": "dd",
-      "brand": "Nike",
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
       "color": "",
       "id": 6
     },
     {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 7
+    },
+    {
+      "productName": "aa",
       "productType": "aa",
       "productPrice": "aa",
       "productSize": "aa",
@@ -74,7 +83,89 @@
       "productDetail": "aa",
       "brand": "Nike",
       "color": "",
-      "id": 7
+      "id": 8
+    },
+    {
+      "productName": "aa",
+      "productType": "aa",
+      "productPrice": "aa",
+      "productSize": "aa",
+      "productDate": "aa",
+      "productDetail": "aa",
+      "brand": "Nike",
+      "color": "",
+      "id": 9
+    },
+    {
+      "productName": "aa",
+      "productType": "aa",
+      "productPrice": "aa",
+      "productSize": "aa",
+      "productDate": "aa",
+      "productDetail": "aa",
+      "brand": "Nike",
+      "color": "",
+      "id": 10
+    },
+    {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 11
+    },
+    {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 12
+    },
+    {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 13
+    },
+    {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 14
+    },
+    {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 15
+    },
+    {
+      "productType": "",
+      "productPrice": "",
+      "productSize": "",
+      "productDate": "",
+      "productDetail": "",
+      "brand": "",
+      "color": "",
+      "id": 16
     }
   ]
 }
