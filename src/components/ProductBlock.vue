@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="flex flex-row border space-x-8 border-gray-50 rounded-md shadow p-2 my-1">
+    <div >
+        <div class="flex flex-row justify-center border w-full h-auto space-x-8 border-gray-50 rounded-md shadow p-2 my-1">
             <div>
                 <img :src="imageUpload" class=" border-2 border-black object-cover w-36 h-36 ml-2 my-2" />
                 <p class="font-medium text-lg">{{ "Color: " + color }} </p>

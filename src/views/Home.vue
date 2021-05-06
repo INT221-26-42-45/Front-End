@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <img class="inset-x-0 pt-20 w-full" alt="group1" src="../assets/Group1.png">
-  </div>
+    <div>
+      <img class="pt-20 inset-x-0 w-full" alt="group1" src="../assets/Group1.png">
+    </div>
 
   <div class="flex justify-center mt-2">
     <img class="h-18 w-16" alt="scroll" src="../assets/scroll.png"  />
@@ -37,7 +38,7 @@
     <div class="flex flex-wrap w-1/4">
       <div class="w-full p-1 ">
         <base-block>
-          <img class="py-8 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/Airmax-90-4.png" />
+          <img class="object-cover w-full h-48 py-8 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/Airmax-90-4.png" />
           <div class="text-left pl-2 p-2">
             <p class="text-lg text-gray-500 font-medium"> Nike Air Max 90 </p>
             <p class=" text-sm text-gray-500 font-normal"> 4600 THB </p>
@@ -49,7 +50,7 @@
     <div class="flex flex-wrap w-1/4">
       <div class=" w-full p-1 ">
         <base-block>
-          <img class=" py-7 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/574-2.png" />
+          <img class="object-cover w-full h-48 py-7 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/574-2.png" />
           <div class="text-left pl-2 p-2">
             <p class="text-lg text-gray-500 font-medium"> New Balance 574 </p>
             <p class=" text-sm text-gray-500 font-normal"> 2900 THB </p>
@@ -61,7 +62,7 @@
     <div class="flex flex-wrap w-1/4">
       <div class="w-full p-1 ">
         <base-block>
-          <img class="py-6 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/Air-Flight.png" />
+          <img class="object-cover w-full h-48 py-6 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/Air-Flight.png" />
           <div class="text-left pl-2 p-2">
             <p class="text-lg text-gray-500 font-medium"> Nike Air Flight 89 </p>
             <p class=" text-sm text-gray-500 font-normal"> 6900 THB </p>
@@ -73,7 +74,7 @@
     <div class="flex flex-wrap w-1/4">
       <div class="w-full p-1 ">
         <base-block>
-          <img class="py-10 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/NMDR1-1.png" />
+          <img class="object-cover w-full h-48 py-10 p-2 rounded-t-md border-gray-200 bg-gray-200" src="../assets/NMDR1-1.png" />
           <div class="text-left pl-2 p-2">
             <p class="text-lg text-gray-500 font-medium"> Adidas NMD R1 </p>
             <p class=" text-sm text-gray-500 font-normal"> 4600 THB </p>
@@ -82,6 +83,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <footer class="bg-black mt-12">
      <div class="container flex flex-col justify-center p-6 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap ">
@@ -89,9 +91,9 @@
         <div class="w-full px-2 pl-0 lg:w-1/4 md:w-1/2">
             <h1 class="mb-3 text-lg font-bold tracking-widest text-white uppercase title-font">Products
             </h1>
-            <nav class="mb-8 list-none">
+            <nav class="list-none w-full">
               <li>
-                <p class="text-sm text-white">Nike Sneaker</p>
+                <p class="text-sm text-white break-normal">Nike Sneaker</p>
               </li>
               <li>
                 <p class="text-sm mt-2 text-white">Adidas Sneaker</p>

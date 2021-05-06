@@ -72,27 +72,48 @@
                             
                             <div class=" pt-1.5">
                                 <label class="label">Color: </label>
-                                <div class="flex flex-row">
-                                    <input type="checkbox" class="h-10 w-10 bg-gray-300 border-2 border-black appearance-none rounded-md checked:bg-black checked:border-transparent"
-                                    value="black" v-model="color" :checked="color === 'Black'">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-white appearance-none rounded-md checked:bg-white checked:border-transparent"
-                                    value="white" v-model="color" :checked="color === 'White'">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-gray-500 appearance-none rounded-md checked:bg-gray-500 checked:border-transparent"
-                                    value="gray" v-model="color" :checked="color === 'Gray'">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-green-500 appearance-none rounded-md checked:bg-green-500 checked:border-transparent"
-                                    value="green" v-model="color" :checked="color === 'Green'">>
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-blue-500 appearance-none rounded-md checked:bg-blue-500 checked:border-transparent"
-                                    value="blue" v-model="color" :checked="color === 'Blue'">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-blue-900 appearance-none rounded-md checked:bg-blue-900 checked:border-transparent"
-                                     value="navy blue" v-model="color" :checked="color === 'Navy blue'">>
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-purple-600 appearance-none rounded-md checked:bg-purple-600 checked:border-transparent"
-                                    value="purple" v-model="color" :checked="color === 'Purple'">>
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-pink appearance-none rounded-md checked:bg-pink checked:border-transparent"
-                                     value="pink" v-model="color" :checked="color === 'Pink'">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-red-600 appearance-none rounded-md checked:bg-red-600 checked:border-transparent"
-                                    value="red" v-model="color" :checked="color === 'Red'">
-                                    <input type="checkbox" class=" ml-3 h-10 w-10 bg-gray-300 border-2 border-yellow-300 appearance-none rounded-md checked:bg-yellow-300 checked:border-transparent"
-                                    value="yellow" v-model="color" :checked="color === 'Yellow'">
+                                <div class="flex flex-row space-x-3">
+                                    <div>
+                                        <input type="checkbox" class="h-10 w-10 bg-gray-300 border-2 border-black appearance-none rounded-md checked:bg-black checked:border-transparent"
+                                        id="color-black" value="black" v-model="color" :checked="color === 'Black'">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-white appearance-none rounded-md checked:bg-white checked:border-transparent"
+                                        id="color-black" value="white" v-model="color" :checked="color === 'White'">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-gray-500 appearance-none rounded-md checked:bg-gray-500 checked:border-transparent"
+                                        id="color-black" value="gray" v-model="color" :checked="color === 'Gray'">
+                                    </div> 
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-green-500 appearance-none rounded-md checked:bg-green-500 checked:border-transparent"
+                                        id="color-black" value="green" v-model="color" :checked="color === 'Green'">>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-blue-500 appearance-none rounded-md checked:bg-blue-500 checked:border-transparent"
+                                        id="color-black" value="blue" v-model="color" :checked="color === 'Blue'">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-blue-900 appearance-none rounded-md checked:bg-blue-900 checked:border-transparent"
+                                        id="color-black" value="navy blue" v-model="color" :checked="color === 'Navy blue'">>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-purple-600 appearance-none rounded-md checked:bg-purple-600 checked:border-transparent"
+                                        id="color-black" value="purple" v-model="color" :checked="color === 'Purple'">>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-pink appearance-none rounded-md checked:bg-pink checked:border-transparent"
+                                        id="color-black" value="pink" v-model="color" :checked="color === 'Pink'">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-red-600 appearance-none rounded-md checked:bg-red-600 checked:border-transparent"
+                                        id="color-black" value="red" v-model="color" :checked="color === 'Red'">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-yellow-300 appearance-none rounded-md checked:bg-yellow-300 checked:border-transparent"
+                                        id="color-black" value="yellow" v-model="color" :checked="color === 'Yellow'">
+                                    </div>
+                                    
                                 </div>
                                 <p v-if="invalidColor" class="error">"Please select product color"</p>
                             </div>
@@ -127,8 +148,6 @@ export default {
     data() {
         return {
             imageUpload: this.imageDb ? this.imageDb : imageUpload,
-            url: 'http://localhost:5000/product',
-            products: [ ],
             proroductName: this.name,
             productType: this.type,
             productPrice: this.price,

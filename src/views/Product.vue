@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex justify-center my-6">
-        <div v-for="product in product " :key="product.id" class="grid grid-cols-2">
+        <div v-for="product in product " :key="product.id" class="grid grid-cols-2 gap-2">
           <product-block
             :productName="product.productName"
             :brand="product.brand"
@@ -23,7 +23,8 @@
             :productSize="product.productSize"
             :productDate="product.productDate"
             :productDetail="product.productDetail"
-            :imageupload="product.productImg" 
+            :imageupload="product.productImg"
+            :color="product.color" 
             @edit-click="openEditModal"
             @delete-click="deleteProduct(product.id)">
           </product-block>
@@ -136,7 +137,6 @@ export default {
       return data;
     },
     async addNewProduct(newProduct){
-      try {
         const res = await fetch(this.url, {
           method: "POST",
           headers: {
@@ -155,18 +155,6 @@ export default {
         });
         const data = await res.json();
         this.products = [...this.products, data];
-        this.currentProduct = this.product[this.product.length-1];
-      } catch (error) {
-        console.log(`Could not add ${error}`);
-      }
-      this.enteredProductName=''
-      this.enteredProductType=''
-      this.enteredProductPrice=''
-      this.enteredProductSize=''
-      this.enteredProductDate=''
-      this.enteredProductDetail=''
-      this.brand=''
-      this.color=''
     },
     async deleteProduct(id) {
       const res = await fetch(`${this.url}/${id}`, {
@@ -214,20 +202,19 @@ export default {
             }
           : product
         );
-        this.productName = editingProduct.productName;
-        this.productType = editingProduct.productType;
-        this.productPrice = editingProduct.productPrice;
-        this.productSize = editingProduct.productSize;
-        this.productDate = editingProduct.productDate;
-        this.productDetail = editingProduct.productDetail;
-        this.productImg = editingProduct.productImg;
-        this.brand = editingProduct.brand;
-        this.color = editingProduct.color;
+        this.currentProduct.productName = editingProduct.productName;
+        this.currentProduct.productType = editingProduct.productType;
+        this.currentProduct.productPrice = editingProduct.productPrice;
+        this.currentProduct.productSize = editingProduct.productSize;
+        this.currentProduct.productDate = editingProduct.productDate;
+        this.currentProduct.productDetail = editingProduct.productDetail;
+        this.currentProduct.productImg = editingProduct.productImg;
+        this.currentProduct.brand = editingProduct.brand;
+        this.currentProduct.color = editingProduct.color;
     },
   },
   async created() {
     this.product = await this.fetchProduct();
-    this.currentProduct = await this.product[0];
   },
   
 };
