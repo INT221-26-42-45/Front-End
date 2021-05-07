@@ -1,14 +1,20 @@
 <template>
-  <div id="nav" class=" z-40 bg-black flex flex-start w-full">
+  <div id="nav" class="bg-black relative select-none bg-grey md:flex md:items-stretch w-full">
     <router-link to="/">
-      <img class="md:ml-4 w-24 h-12 md:pt-0 sm:pt-2" alt="logo" src="./assets/logo.png" />
+      <img class="ml-4 w-24 h-12 mt-2" alt="logo" src="./assets/logo.png" />
     </router-link>
 
-    <div class="pt-2 pr-4 w-full flex justify-end">
-      <div class="space-x-4">
-      <router-link to="/">HOME</router-link> 
-      <router-link to="/product">PRODUCT</router-link> 
-      <router-link to="/contact-us">CONTACT US</router-link>
+    <div class=" pr-4 md:flex md:items-stretch md:flex-no-shrink md:flex-grow">
+      <div class="md:flex md:items-stretch md:justify-end ml-auto">
+        <div class="flex-no-grow flex-no-shrink py-2 px-4 leading-normal text-white no-underline flex items-center">
+          <router-link to="/">HOME</router-link> 
+        </div>
+        <div class="flex-no-grow flex-no-shrink py-2 px-4 leading-normal text-white no-underline flex items-center">
+          <router-link to="/product">PRODUCT</router-link>
+        </div>
+        <div class="flex-no-grow flex-no-shrink py-2 px-4 leading-normal text-white no-underline flex items-center"> 
+          <router-link to="/contact-us">CONTACT US</router-link>
+        </div>
       </div>
     </div> 
   </div>
@@ -25,7 +31,7 @@
 }
 
 #nav {
-  padding: 16px;
+  padding: 18px;
   font-size: 20px;
 }
 
@@ -33,8 +39,8 @@
   font-weight: bold;
   color: #ffffff;
 }
-
 #nav a.router-link-exact-active {
   color: #FF008C;
 }
+
 </style>
