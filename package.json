@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "autoprefixer": "^9",
+    "axios": "^0.21.1",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "@tailwindcss/postcss7-compat": "^2.0.2",
