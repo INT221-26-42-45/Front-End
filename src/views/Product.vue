@@ -1,220 +1,70 @@
 <template>
-  <div class="fixed mt-24 w-full ">
-    <div class=" pl-28 flex justify-center space-x-28">
-        <router-link to="/product">
-          <base-button buttonLabel="VIEW PRODUCTS" buttonColor="bg-pkras"></base-button>
-        </router-link> 
-        <router-link to="/product">
-          <base-button @click="toggleAddProduct" buttonLabel="ADD PRODUCTS" buttonColor="bg-pkras"></base-button>
-        </router-link>
+  <div class=" w-full ">
+<div class="text-base px-5 pt-28 text-right hover:underline text-black ">
+      <router-link to="/product">Add Product</router-link>
+</div>
 
-      <div class="z-30">
-        <add-product v-if="showAddProductModal" @save-product="addNewProduct" @close="toggleAddProduct"></add-product>
+ 
+  <div class="grid grid-cols-3 text-left ">  
+    <div v-for="p in product" :key="p.productId" class="mx-10 text-sm ">
+      <div class="border space-x-8 border-gray-50 rounded-md shadow p-2 mt-3 ">
+      <img :src="getProductImage(p.imageName)"/>
+      <p>{{ p.productName }}</p>
+      <p>{{ p.productDescription }}</p>
+      <p>{{ p.productType}}</p>
+      <p>{{ p.productSize }}</p>
+      <p>{{ p.brands }}</p>
+      <div class="" v-for="brand in brands"
+      :key="brand.brandId" :style="brand.brandName">
+      </div>
+      <p>{{ p.colors }}</p>
+      <div class="" v-for="color in p.colors" 
+      :key="color.colorId" :style="{ background: color.colorName }">
+      </div>
+      <p>{{ p.productDate}}</p>
+      <p>{{ p.productPrice }}</p>
+     <div class="bottom-0 right-0">
+      <button class="bg-green-500 py-1 px-3 rounded-md text-white" @click="editButtonClick">
+              Edit
+      </button>
+      <button class="bg-red-500 py-1 px-3 mx-2 rounded-md text-white" @click="deleteButtonClick">
+              Delete
+      </button>
       </div>
     </div>
-
-    <div class="flex justify-center my-6">
-        <div v-for="product in product " :key="product.id" class="grid grid-cols-2 gap-2">
-          <product-block
-            :productName="product.productName"
-            :brand="product.brand"
-            :productType="product.productType"
-            :productPrice="product.productDetail"
-            :productSize="product.productSize"
-            :productDate="product.productDate"
-            :productDetail="product.productDetail"
-            :imageupload="product.productImg"
-            :color="product.color" 
-            @edit-click="openEditModal"
-            @delete-click="deleteProduct(product.id)">
-          </product-block>
-        </div>
-
-    </div>
+   
   </div>
-
-  <add-product
-    v-if="editClicked"
-    @close="changeEditProductClicked"
-    :imageDb="currentProduct.productImg"
-    :productName="currentProduct.productName" 
-    :productType="currentProduct.productType"
-    :productPrice="currentProduct.productPrice"
-    :productSize="currentProduct.productSize"
-    :productDate="currentProduct.productDate"
-    :productDetail="currentProduct.productDetail"
-    :brand="currentProduct.brand"
-    :color="currentProduct.color"
-    @save-product="editProduct"
-  >
-  </add-product>
-
-  <!-- <footer class="bg-black mt-12">
-     <div class="container flex flex-col justify-center p-6 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap ">
-      <div class="flex flex-row justify-center space-x-4 mt-6 -mb-6 text-left md:pl-20 md:mt-0 ">
-        <div class="w-full px-2 pl-0 lg:w-1/4 md:w-1/2">
-            <h1 class="mb-3 text-lg font-bold tracking-widest text-white uppercase title-font">Products
-            </h1>
-            <nav class="mb-8 list-none">
-              <li>
-                <p class="text-sm text-white">Nike Sneaker</p>
-              </li>
-              <li>
-                <p class="text-sm mt-2 text-white">Adidas Sneaker</p>
-              </li>
-              <li>
-                <p class="text-sm mt-2 text-white">NB Sneaker</p>
-              </li>
-            </nav>
-        </div>
-        <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-              <h1 class="mb-3 text-lg font-bold tracking-widest text-white  uppercase title-font">Collections
-              </h1>
-              <nav class="mb-8 list-none">
-                <li>
-                  <p class="text-sm text-white">Nike Air</p>
-                </li>
-                <li>
-                  <p class="text-sm mt-2 text-white">Sperstar NMD</p>
-                </li>
-                <li>
-                  <p class="text-sm mt-2 text-white">574</p>
-                </li>
-              </nav>
-        </div>
-        <div class="w-full px-2 pl-10 lg:w-1/4 md:w-1/2">
-            <h1 class="mb-3 text-lg font-bold tracking-widest text-white uppercase title-font">Support
-            </h1>
-            <nav class="mb-8 list-none">
-              <li>
-                <p class="text-sm text-white">Nike</p>
-              </li>
-              <li>
-                <p class="text-sm mt-2 text-white">Adidas</p>
-              </li>
-              <li>
-                <p class="text-sm mt-2 text-white">New Balance</p>
-              </li>
-            </nav>
-        </div>
-        <div class="w-full mt-16 pl-2 lg:w-1/4 md:w-1/2">
-          <img class="w-24 h-12" alt="logofooter" src="../assets/logo.png" />
-        </div>
-      </div>
-    </div>         
-  </footer> -->
+</div>
+</div>
+ 
 
 </template>
 
 <script>
-import AddProduct from '../components/AddProduct.vue';
-import ProductBlock from '../components/ProductBlock.vue';
+import ProductService from '../service/ProductService';
 export default {
-  props: ["addClicked"],
-  components: {
-    AddProduct,
-    ProductBlock
-  },
   data(){
     return {
-      url: "http://localhost:5000/product",
       product: [],
-      currentProduct: [],
-      showAddProductModal: false,
-      editClicked: false
+      colors: [],
+      brands: [],
+      imageName: ""
     };
   },
   methods: {
-    changeEditProductClicked(value){
-      this.editClicked = !value;
-    },
-    toggleAddProduct: function() {
-      this.showAddProductModal = !this.showAddProductModal;
-    },
-    async fetchProduct(){
-      const res = await fetch(this.url);
-      const data = await res.json();
-      return data;
-    },
-    async addNewProduct(newProduct){
-        const res = await fetch(this.url, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            productName: newProduct.productName,
-            productType: newProduct.productType,
-            productPrice: newProduct.productPrice,
-            productSize: newProduct.productSize,
-            productDate: newProduct.productDate,
-            productDetail: newProduct.productDetail,
-            brand: newProduct.brand,
-            color: newProduct.color
-          }),
-        });
-        const data = await res.json();
-        this.products = [...this.products, data];
-    },
-    async deleteProduct(id) {
-      const res = await fetch(`${this.url}/${id}`, {
-        method: "DELETE",
+    getProduct(){
+      ProductService.retrieveAllProduct()
+      .then((response) => {
+        this.product = response.data;
       });
-      res.status === 200 ? (this.product = this.product.filter((product) => product.id !== id))
-      : alert("Error delete product");
-      this.currentProduct = this.product[this.product.length - 1];
     },
-    openEditModal(value) {
-      this.editClicked = value;
-    },
-    async editProduct(editingProduct) {
-      const res = await fetch(`${this.url}/${this.currentProduct.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body:JSON.stringify({
-          productName: editingProduct.productName,
-          productType: editingProduct.productType,
-          productPrice: editingProduct.productPrice,
-          productSize: editingProduct.productSize,
-          productDate: editingProduct.productDate,
-          productDetail: editingProduct.productDetail,
-          productImg: editingProduct.productImg,
-          brand: editingProduct.brand,
-          color: editingProduct.color
-        }),
-      });
-      const data = await res.json();
-      this.product = this.product.map((product) => 
-        product.id === data.id
-          ? {
-              ...product,
-              productName: data.productName,
-              productType: data.productType,
-              productPrice: data.productPrice,
-              productSize: data.productSize,
-              productDate: data.productDate,
-              productDetail: data.productDetail,
-              productImg: data.productImg,
-              brand: data.brand,
-              color: data.color
-            }
-          : product
-        );
-        this.currentProduct.productName = editingProduct.productName;
-        this.currentProduct.productType = editingProduct.productType;
-        this.currentProduct.productPrice = editingProduct.productPrice;
-        this.currentProduct.productSize = editingProduct.productSize;
-        this.currentProduct.productDate = editingProduct.productDate;
-        this.currentProduct.productDetail = editingProduct.productDetail;
-        this.currentProduct.productImg = editingProduct.productImg;
-        this.currentProduct.brand = editingProduct.brand;
-        this.currentProduct.color = editingProduct.color;
-    },
+    getProductImage(imageName){
+      return ProductService.retriveProductImage() +imageName;
+    }
   },
-  async created() {
-    this.product = await this.fetchProduct();
+    created() {
+    this.getProduct();
+    this.getProductImage(this.imageName);
   },
   
 };
