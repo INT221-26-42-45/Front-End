@@ -43,7 +43,7 @@
 
                             <div>
                                 <label class="label">Date: </label>
-                                <input  type="text" id="productDate" name="productDate" placeholder="YYYY-MM-DD"
+                                <input  type="date" id="productDate" name="productDate" placeholder="YYYY-MM-DD"
                                 v-model.trim="productDate" @blur="validateProductDate" class="font-medium text-left rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                 <p v-if="invalidProductDate" class="error">"Please enter product date"</p>
                             </div>

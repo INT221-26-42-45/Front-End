@@ -16,6 +16,7 @@
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "validate.js": "^0.13.1",
     "vue": "^3.0.0",
+    "vue-date-pick": "^1.4.1",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
