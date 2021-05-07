@@ -1,7 +1,7 @@
 <template>
-  <div id="nav" class="fixed z-40 bg-black flex flex-start w-full">
+  <div id="nav" class=" z-40 bg-black flex flex-start w-full">
     <router-link to="/">
-      <img class="ml-4 w-24 h-12" alt="logo" src="./assets/logo.png" />
+      <img class="md:ml-4 w-24 h-12 md:pt-0 sm:pt-2" alt="logo" src="./assets/logo.png" />
     </router-link>
 
     <div class="pt-2 pr-4 w-full flex justify-end">
