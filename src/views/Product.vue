@@ -42,13 +42,16 @@
                 Edit
         </button>
 
-        <button class="bg-black hover:bg-rose py-1 px-3 mx-2 rounded-md text-white" @click="deleteButtonClick">
+        <button class="bg-black hover:bg-rose py-1 px-3 mx-2 rounded-md text-white" @click="deleteProduct(p.productId)">
                 Delete
         </button>
         </div>
         </div>
       </div>
-    </div>
+ </div>
+ <div class="md:grid-cols-3">
+    <router-view @show="refreshList()" ></router-view>
+  </div>
   </div>
 
   <add-product v-if="editClicked" @close="changeEditItemClicked" @save-product="editProduct">
@@ -85,43 +88,43 @@ export default {
     openEditModal(value) {
       this.editClicked = value;
     },
-    getProduct(){
-      ProductService.retrieveAllProduct()
-      .then((response) => {
+    // getProduct(){
+    //   ProductService.retrieveAllProduct()
+    //   .then((response) => {
+    // getProduct(){
+    //   ProductService.retrieveAllProduct()
+    //   .then((response) => {
+    //     this.product = response.data;
+    //   });
+    // },
+    retrieveProduct() {
+      ProductService.get("/product")
+      .then(response => {
         this.product = response.data;
-      });
+      })
     },
     getProductImage(productImg){
       return "http://localhost:9000/image/"+productImg;
     },
-    async fetchProduct() {
-      const res = await fetch(this.url);
-      const data = await res.json();
-      return data;
+    refreshList() {
+      this.retrieveProduct();
     },
-    async addNewProduct(newproduct) {
-      const res = await fetch(this.url, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          productName: newproduct.productName,
-          productDetail: newproduct.productDetail,
-          productPrice: newproduct.productPrice,
-          productImg: newproduct.productImg,
-          productType: newproduct.productType,
-          productSize: newproduct.productSize,
-          brands: newproduct.brands,
-          colors: newproduct.colors
-        }),
+    deleteProduct(productId) {
+      ProductService.delete("/delete/"+ productId) 
+      .then(response => {
+        this.product = response.data;
+        this.refreshList();
+        this.$router.push('/product');
       });
-      const data = await res.json();
-      this.product = [...this.product, data];
-    },
+    }
+    // deleteProduct() {
+    //   return ProductService.delete("/delete/"+this.productId);
+    // }
+
   },
     created() {
-    this.getProduct();
+    this.retrieveProduct();
+   
   },
   //
 };
