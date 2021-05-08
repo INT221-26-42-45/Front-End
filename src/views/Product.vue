@@ -42,16 +42,17 @@
                 Edit
         </button>
 
-        <button class="bg-black hover:bg-rose py-1 px-3 mx-2 rounded-md text-white" @click="deleteButtonClick">
+        <button class="bg-black hover:bg-rose py-1 px-3 mx-2 rounded-md text-white" @click="deleteProduct(p.productId)">
                 Delete
         </button>
         </div>
         </div>
       </div>
-    </div>
+ </div>
+ <div class="md:grid-cols-3">
+    <router-view @show="refreshList()" ></router-view>
   </div>
- 
-
+  </div>
 </template>
 
 <script>
@@ -75,18 +76,40 @@ export default {
     toggleModal: function() {
       this.showModal = !this.showModal;
     },
-    getProduct(){
-      ProductService.retrieveAllProduct()
-      .then((response) => {
+    // getProduct(){
+    //   ProductService.retrieveAllProduct()
+    //   .then((response) => {
+    //     this.product = response.data;
+    //   });
+    // },
+    retrieveProduct() {
+      ProductService.get("/product")
+      .then(response => {
         this.product = response.data;
-      });
+      })
     },
     getProductImage(productImg){
       return "http://localhost:9000/image/"+productImg;
+    },
+    refreshList() {
+      this.retrieveProduct();
+    },
+    deleteProduct(productId) {
+      ProductService.delete("/delete/"+ productId) 
+      .then(response => {
+        this.product = response.data;
+        this.refreshList();
+        this.$router.push('/product');
+      });
     }
+    // deleteProduct() {
+    //   return ProductService.delete("/delete/"+this.productId);
+    // }
+
   },
     created() {
-    this.getProduct();
+    this.retrieveProduct();
+   
   },
   //
 };
