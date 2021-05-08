@@ -6,9 +6,7 @@ class ProductService {
     retrieveAllProduct() {
         return axios.get(`${API_URL}/product`);
     }
-    retriveProductImage(){
-        return axios.get(`${API_URL}/product`);
-    }
+
 }
 
 export default new ProductService();
