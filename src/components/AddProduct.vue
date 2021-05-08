@@ -10,129 +10,122 @@
                 </div>
 
                 <div class=" bg-darkgray rounded-md px-4">
-                <form @submit.prevent="addProduct" >
-                    <div class="flex flex-row justify-around mt-2 space-x-5">
-                        <div class="mt-2 w-2/5 space-y-2">
-                            <div>
-                                <label class="label">Product name: </label>
-                                <input  type="text" id="productName" name="productName"
-                                v-model.trim="enteredProductName" @blur="validateProductName" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2 focus:ring-2 focus:ring-orange"/>
-                                <p v-if="invalidProductName" class="error">"Please enter product name"</p>
-                            </div>
-
-                            <div>
-                                <label class="label">Type: </label>
-                                <input  type="text" id="productType" name="productType"
-                                v-model.trim="productType" @blur="validateProductType" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
-                                <p v-if="invalidProductType" class="error">"Please enter product type"</p>
-                            </div>
-
-                            <div>
-                                <label class="label">Price: </label>
-                                <input  type="text" id="productPrice" name="productPrice"
-                                v-model.trim="productPrice" @blur="validateProductPrice" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
-                                <p v-if="invalidProductPrice" class="error">"Please enter product price"</p>
-                            </div>
-
-                            <div>
-                                <label class="label">Size: </label>
-                                <input  type="text" id="productSize" name="productSize"
-                                v-model.trim="productSize" @blur="validateProductSize" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
-                                <p v-if="invalidProductSize" class="error">"Please enter product size"</p>
-                            </div>
-
-                            <div>
-                                <label class="label">Date: </label>
-                                <input  type="date" id="productDate" name="productDate" placeholder="YYYY-MM-DD"
-                                v-model.trim="productDate" @blur="validateProductDate" class="font-medium text-left rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
-                                <p v-if="invalidProductDate" class="error">"Please enter product date"</p>
-                            </div>
-                            
-                        </div> 
-                        <div class="mt-2 w-3/5 space-y-1">
-                            <div>
-                                <label class="label">Details: </label>
-                                <textarea rows="4" cols="50" type="text" id="productDetail" name="productDetail"
-                                placeholder="Enter detail ..." v-model.trim="productDetail" @blur="validateProductDetail" class="w-full px-3 py-2 mb-1 h-48 font-medium text-left bg-white border-2 border-orange border-opacity-50y rounded-md"/>
-                                <p v-if="invalidProductDetail" class="error">"Please enter product detail"</p>
-                            </div>
-
-                            <div>
-                                <label class="label">Brand: </label>
-                                <select id="brand"  v-model.trim="brand" @blur="validateBrand" name="brand" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2">
-                                    <option>Adidas</option>
-                                    <option>Nike</option>
-                                    <option>New Balance</option>
-                                    <option>Converse</option>
-                                    <option>Vans</option>
-                                    <option>Fila</option>
-                                </select>
-                                <p v-if="invalidBrand" class="error">"Please select product brand"</p>
-                            </div>
-                            
-                            <div class=" pt-1.5">
-                                <label class="label">Color: </label>
-                                <div class="flex flex-row space-x-3">
-                                    <div>
-                                        <input type="checkbox" class="h-10 w-10 bg-gray-300 border-2 border-black appearance-none rounded-md checked:bg-black checked:border-transparent"
-                                        id="color-black" value="black" v-model="color" :checked="color === 'Black'">
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-white appearance-none rounded-md checked:bg-white checked:border-transparent"
-                                        id="color-black" value="white" v-model="color" :checked="color === 'White'">
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-gray-500 appearance-none rounded-md checked:bg-gray-500 checked:border-transparent"
-                                        id="color-black" value="gray" v-model="color" :checked="color === 'Gray'">
-                                    </div> 
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-green-500 appearance-none rounded-md checked:bg-green-500 checked:border-transparent"
-                                        id="color-black" value="green" v-model="color" :checked="color === 'Green'">>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-blue-500 appearance-none rounded-md checked:bg-blue-500 checked:border-transparent"
-                                        id="color-black" value="blue" v-model="color" :checked="color === 'Blue'">
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-blue-900 appearance-none rounded-md checked:bg-blue-900 checked:border-transparent"
-                                        id="color-black" value="navy blue" v-model="color" :checked="color === 'Navy blue'">>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-purple-600 appearance-none rounded-md checked:bg-purple-600 checked:border-transparent"
-                                        id="color-black" value="purple" v-model="color" :checked="color === 'Purple'">>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-pink appearance-none rounded-md checked:bg-pink checked:border-transparent"
-                                        id="color-black" value="pink" v-model="color" :checked="color === 'Pink'">
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-red-600 appearance-none rounded-md checked:bg-red-600 checked:border-transparent"
-                                        id="color-black" value="red" v-model="color" :checked="color === 'Red'">
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-yellow-300 appearance-none rounded-md checked:bg-yellow-300 checked:border-transparent"
-                                        id="color-black" value="yellow" v-model="color" :checked="color === 'Yellow'">
-                                    </div>
-                                    
+                    <form @submit.prevent="addProduct">
+                        <div class="flex flex-row justify-around mt-2 space-x-5">
+                            <div class="mt-2 w-2/5 space-y-2">
+                                <div>
+                                    <label class="label">Product name: </label>
+                                    <input  type="text" id="productName" name="productName"
+                                    v-model.trim="productName" @blur="validateProductName" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2 focus:ring-2 focus:ring-orange"/>
+                                    <p v-if="invalidProductName" class="error">"Please enter product name"</p>
                                 </div>
-                                <p v-if="invalidColor" class="error">"Please select product color"</p>
+                                <div>
+                                    <label class="label">Type: </label>
+                                    <input  type="text" id="productType" name="productType"
+                                    v-model.trim="productType" @blur="validateProductType" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    <p v-if="invalidProductType" class="error">"Please enter product type"</p>
+                                </div>
+                                <div>
+                                    <label class="label">Price: </label>
+                                    <input  type="text" id="productPrice" name="productPrice"
+                                    v-model.trim="productPrice" @blur="validateProductPrice" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    <p v-if="invalidProductPrice" class="error">"Please enter product price"</p>
+                                </div>
+                                <div>
+                                    <label class="label">Size: </label>
+                                    <input  type="text" id="productSize" name="productSize"
+                                    v-model.trim="productSize" @blur="validateProductSize" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    <p v-if="invalidProductSize" class="error">"Please enter product size"</p>
+                                </div>
+                                <div>
+                                    <label class="label">Date: </label>
+                                    <input  type="date" id="productDate" name="productDate"
+                                    v-model.trim="productDate" @blur="validateProductDate" class="font-medium text-left rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    <p v-if="invalidProductDate" class="error">"Please enter product date"</p>
+                                </div>
+                            </div>
+                            <div class="mt-2 w-3/5 space-y-1">
+                                <div>
+                                    <label class="label">Details: </label>
+                                    <textarea rows="4" cols="50" type="text" id="productDetail" name="productDetail"
+                                    placeholder="Enter product detail ..." v-model.trim="productDetail" @blur="validateProductDetail" class="w-full px-3 py-2 mb-1 h-48 font-medium text-left bg-white border-2 border-orange border-opacity-50y rounded-md"/>
+                                    <p v-if="invalidProductDetail" class="error">"Please enter product detail"</p>
+                                </div>
+                                <div>
+                                    <label class="label">Brand: </label>
+                                    <select id="brand"  v-model.trim="brand" @blur="validateBrand" name="brand" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2">
+                                        <option>Adidas</option>
+                                        <option>Nike</option>
+                                        <option>New Balance</option>
+                                        <option>Converse</option>
+                                        <option>Vans</option>
+                                        <option>Fila</option>
+                                    </select>
+                                    <p v-if="invalidBrand" class="error">"Please select product brand"</p>
+                                </div>
+                                <div class=" pt-1.5">
+                                    <label class="label">Color: </label>
+                                    <div class="flex flex-row space-x-3">
+                                        <div>
+                                            <input type="checkbox" class="h-10 w-10 bg-gray-300 border-2 border-black appearance-none rounded-md checked:bg-black checked:border-transparent"
+                                            id="1" value="#000000" v-model="color" :checked="color === '#000000'">
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-white appearance-none rounded-md checked:bg-white checked:border-transparent"
+                                            id="2" value="#FFFFFF" v-model="color" :checked="color === '#FFFFFF'">
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-gray-500 appearance-none rounded-md checked:bg-gray-500 checked:border-transparent"
+                                            id="3" value="#B7B7A4" v-model="color" :checked="color === '#B7B7A4'">
+                                        </div> 
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-green-500 appearance-none rounded-md checked:bg-green-500 checked:border-transparent"
+                                            id="4" value="#70E000" v-model="color" :checked="color === '#70E000'">>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-blue-500 appearance-none rounded-md checked:bg-blue-500 checked:border-transparent"
+                                            id="5" value="#56CFE1" v-model="color" :checked="color === '#56CFE1'">
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-blue-900 appearance-none rounded-md checked:bg-blue-900 checked:border-transparent"
+                                            id="6" value="#013A63" v-model="color" :checked="color === '#013A63'">>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-purple-600 appearance-none rounded-md checked:bg-purple-600 checked:border-transparent"
+                                            id="7" value="#BE0AFF" v-model="color" :checked="color === '#BE0AFF'">>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-pink appearance-none rounded-md checked:bg-pink checked:border-transparent"
+                                            id="8" value="#FF7AA2" v-model="color" :checked="color === '#FF7AA2'">
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-red-600 appearance-none rounded-md checked:bg-red-600 checked:border-transparent"
+                                            id="9" value="#EF233C" v-model="color" :checked="color === '#EF233C'">
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" class=" h-10 w-10 bg-gray-300 border-2 border-yellow-300 appearance-none rounded-md checked:bg-yellow-300 checked:border-transparent"
+                                            id="10" value="#FFE100" v-model="color" :checked="color === '#FFE100'">
+                                        </div>
+                                    
+                                    </div>
+                                    <p v-if="invalidColor" class="error">"Please select product color"</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mt-4 mb-4 flex flex-col space-y-2">
-                        <label class="label ml-32">Choose a product picture (*.png, *.jpeg, *.gif): </label>
-                        <input id="file-input" type="file" @change="uploadPhoto" class=" ml-32"/>
-                        <div class="flex justify-center">
-                            <img :src="imageUpload" class="object-cover h-60 w-3/4" />
+                        <div class="mt-4 mb-4 flex flex-col items-center space-y-2">
+                            <label class="label">Choose a product picture (*.png, *.jpeg, *.gif): </label>
+                            <input id="file-input" type="file" @change="uploadPhoto"/>
+                            <div class="flex justify-center">
+                                <img :src="imageUpload" class="object-cover h-60 w-30" />
+                            </div>
                         </div>
-                    </div>
-
-                    <div class=" flex flex-row justify-center space-x-2 mt-4 mb-4">
-                        <base-button @click="closeModal" buttonLabel="CANCEL" buttonColor="bg-white" txtColor="text-darkgray" buttonBorder=" border-orange"></base-button>
-                        <base-button buttonLabel="ADD" buttonColor="bg-pkras" txtColor="text-darkgray"></base-button>
-                    </div>
-                </form>
+                        <div class=" flex flex-row justify-center space-x-2 mt-4 mb-4">
+                            <button class="bg-green-500 hover:bg-green-600 hover:text-white py-2 px-16 mx-2 rounded-full text-darkgray text-xl font-bold uppercase">
+                                add
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -143,19 +136,19 @@
 import imageUpload from "../assets/imageupload.png";
 export default {
     name: "add-product",
-    props: ["imageDb", "name", "type", "price", "size", "date", "detail", "brands", "colors"],
+    props: ["imageDb"],
     emits: ["close", "save-product"],
     data() {
         return {
             imageUpload: this.imageDb ? this.imageDb : imageUpload,
-            proroductName: this.name,
-            productType: this.type,
-            productPrice: this.price,
-            productSize: this.size,
-            productDate: this.date,
-            productDetail: this.detail,
-            brand: this.brands,
-            color: this.color,
+            proroductName: '',
+            productType: '',
+            productPrice: '',
+            productSize: '',
+            productDate: '',
+            productDetail: '',
+            brand: '',
+            color: [],
             invalidProductName: false,
             invalidProductType: false,
             invalidProductPrice: false,
@@ -174,7 +167,7 @@ export default {
             const file = u.target.files[0] || u.dataTransfer.files[0];
             const reader = new FileReader();
             reader.onload = (u) => {
-                this.imageUpload = u.target.product;
+                this.imageUpload = u.target.result;
             };
             reader.readAsDataURL(file);
         },
