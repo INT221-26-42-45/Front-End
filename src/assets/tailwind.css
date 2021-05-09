@@ -17,7 +17,7 @@
 }
 
 .label {
-    @apply pl-1 font-medium text-white flex justify-start;
+    @apply  font-medium text-white flex justify-start;
 }
 
 .input {

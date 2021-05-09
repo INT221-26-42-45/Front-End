@@ -116,13 +116,11 @@ export default {
         this.refreshList();
         this.$router.push('/product');
       });
+
     },
     // deleteProduct() {
     //   return ProductService.delete("/delete/"+this.productId);
     // }
-    editProduct(){
-
-    }
 
   },
     created() {
