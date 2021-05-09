@@ -37,7 +37,7 @@
 
         <p>{{"Price: "+ p.productPrice }}</p>
 
-      <div class="bottom-0 right-0">
+      <div >
         <button class="bg-black hover:bg-lavender py-1 px-3 rounded-md text-white " @click="openEditModal">
                 Edit
         </button>
@@ -116,10 +116,13 @@ export default {
         this.refreshList();
         this.$router.push('/product');
       });
-    }
+    },
     // deleteProduct() {
     //   return ProductService.delete("/delete/"+this.productId);
     // }
+    editProduct(){
+
+    }
 
   },
     created() {
