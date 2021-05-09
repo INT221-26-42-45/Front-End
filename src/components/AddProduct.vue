@@ -10,7 +10,7 @@
                 </div>
 
                 <div class=" bg-darkgray rounded-md px-4">
-                    <form @submit.prevent="addProduct">
+                    <form @submit.prevent="productForm">
                         <div class="flex flex-row justify-around mt-2 space-x-5">
                             <div class="mt-2 w-2/5 space-y-2">
                                 <div>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div>
                                     <label class="label">Date: </label>
-                                    <input  type="text" id="productDate" name="productDate" placeholder="YYYY-MM-DD"
+                                    <input  type="Date" id="productDate" name="productDate" 
                                     v-model.trim="product.productDate" @blur="validateProductDate" class="font-medium text-left rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductDate" class="error">"Please enter product date"</p>
                                 </div>
@@ -47,9 +47,9 @@
                             <div class="mt-2 w-3/5 space-y-1">
                                 <div>
                                     <label class="label">Description: </label>
-                                    <textarea rows="4" cols="50" type="text" id="productDetail" name="productDetail"
-                                    placeholder="Enter product description ..." v-model.trim="product.productDescription" @blur="validateProductDetail" class="w-full px-3 py-2 mb-1 h-48 font-medium text-left bg-white border-2 border-orange border-opacity-50y rounded-md"/>
-                                    <p v-if="invalidProductDetail" class="error">"Please enter product detail"</p>
+                                    <textarea rows="4" cols="50" type="text" id="productDescription" name="productDescription"
+                                    placeholder="Enter product description ..." v-model.trim="product.productDescription" @blur="validateProductDescription" class="w-full px-3 py-2 mb-1 h-48 font-medium text-left bg-white border-2 border-orange border-opacity-50y rounded-md"/>
+                                    <p v-if="invalidProductDescription" class="error">"Please enter product description"</p>
                                 </div>
                                 <div>
                                     <label class="label">Brand: </label>
@@ -59,25 +59,29 @@
                                     <p v-if="invalidBrand" class="error">"Please select product brand"</p>
                                 </div>
                                 <div class=" pt-1.5">
-                                    <label class="label">Color: </label>
-                                    <div class="flex flex-row space-x-3">
-                                            <input type="checkbox" class="h-10 w-10  appearance-none rounded-md "
-                                             v-model="colors.colorName"  id="colors.colorId" value="colors.colorName" v-for="color in colors" :key="color.colorId" :style="{ background: color.colorName }" >
+                                    <label  class="label">Color: </label>
+                                    <div class="flex ">
+                                        <div v-for="color in colors" :key="color.colorId" :value="color.colorName" >
+                                            <input type="checkbox"  v-model="color.colorName" id="colors" name="colors" />
+                                           <div class=" w-8 h-8 rounded-md mx-2" :style="{ background: color.colorName }"></div>
+                                        </div>
                                     </div>
-                                    <p v-if="invalidColor" class="error">"Please select product color"</p>
+                                    <p v-if="invalidColors" class="error">"Please select product color"</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-4 mb-4 flex flex-col items-center space-y-2">
                             <label class="label">Choose a product picture (*.png, *.jpeg): </label>
-                            <input id="file-input" type="file" @change="uploadPhoto"/>
+                            <input id="product.productImg" type="file" accept="product.productImg/png" @change="uploadPhoto" multiple
+                            ref="product.productImg"/>
                             <div class="flex justify-center">
                                 <img :src="imageUpload" class="object-cover h-60 w-30" />
                             </div>
+                            <p v-if="invalidImage" class="error">"Please enter product image"</p>
                         </div>
                         <div class=" flex flex-row justify-center space-x-2 mt-4 mb-4">
-                            <button class="bg-green-500 hover:bg-green-600 hover:text-white py-2 px-16 mx-2 rounded-full text-darkgray text-xl font-bold uppercase">
+                            <button class="bg-green-500 hover:bg-green-600 hover:text-white py-2 px-16 mx-2 rounded-full text-darkgray text-xl font-bold uppercase" @click="addProduct(newProduct)">
                                 add
                             </button>
                         </div>
@@ -110,9 +114,56 @@ export default {
             invalidProductDescription: false,
             invalidBrands: false,
             invalidColors: false,
+            invalidImage: false
         }
     },
     methods: {
+        productForm() {
+            this.invalidProductName = this.productName === "" ? true:false;
+            this.invalidProductType = this.productType === "" ? true:false;
+            this.invalidProductPrice = this.productPrice === "" ? true:false;
+            this.invalidProductSize = this.productSize === "" ? true:false;
+            this.invalidProductDate = this.productDate === "" ? true:false;
+            this.invalidProductDescription = this.productDescription === "" ? true:false;
+            this.invalidBrands = this.brands === "" ? true:false;
+            this.invalidColors = this.colors.length === 0 ? true:false;
+            this.invalidImage = this.productImg  === null ? true:false;
+
+            if(this.productName !== "" && this.productType !== "" && this.productPrice !== "" && this.productSize !== "" &&
+            this.productDate !== "" && this.productDescription !== "" && this.brands !== "" && this.colors.length !== 0 && this.productImg !== null ) {
+                this.addProduct({productName: this.productName, productType: this.productType, productPrice: this.productPrice,
+                productSize: this.productSize, productDate: this.productDate, productDescription: this.productDescription,
+                brands: this.brands, colors: this.colors, productImg: this.productImg });
+            }
+        },
+        addProduct(newProduct) {
+            let formData = new FormData();
+
+            let add = {
+                productName: newProduct.productName,
+                productType: newProduct.productType,
+                productPrice: newProduct.productPrice,
+                productDate: newProduct.productDate,
+                productDescription: newProduct.productDescription,
+                brands: newProduct.brands,
+                productImg: newProduct.productImg,
+                colors: newProduct.colors
+            };
+            let productData = JSON.stringify(add);
+            formData.append("file", this.productImg,this.productImg.name);
+            formData.append("newProduct", add);
+            ProductService.post("/add"), {
+                headers:{
+                    "Content-type":"application/json",
+                },
+                body: productData
+            }
+            ProductService.post("/add").uploadPhoto(), {
+                body: formData
+            }
+           
+        },
+        
         closeModal(){
             this.$emit("close", true);
         },
@@ -175,17 +226,3 @@ export default {
     }
 };
 </script>
-<style scoped>
-.colorFormat {
-  display: flex;
-  width: 100%;
-}
-.color {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-  border-radius: 0px;
-  margin-bottom: 15px;
-}
-
-</style>
