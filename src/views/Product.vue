@@ -102,9 +102,7 @@ export default {
         this.$router.push('/product');
       });
     }
-    // deleteProduct() {
-    //   return ProductService.delete("/delete/"+this.productId);
-    // }
+
 
   },
     created() {
