@@ -14,7 +14,7 @@
  
     <div class="grid md:grid-cols-3 sm:grid-cols-1 text-left justify-items-center  ">  
       <div v-for="p in product" :key="p.productId" class="mx-10 text-sm ">
-        <div class="piece">
+        <div class="piece rounded-md">
         
         <img class="pic" :src="getProductImage(p.productImg)"/>
         <p class="mt-3">{{"Name: "+ p.productName }}</p>
@@ -28,7 +28,7 @@
         <p class="mb-3">{{"Brand: "+ p.brands.brandName }}</p>
         
         <div class="colorFormat">
-        <div class="color" v-for="color in p.colors" 
+        <div class="color rounded" v-for="color in p.colors" 
         :key="color.colorId" :style="{ background: color.colorName }">
         </div>
         </div>
@@ -38,7 +38,7 @@
         <p>{{"Price: "+ p.productPrice }}</p>
 
       <div class="bottom-0 right-0">
-        <button class="bg-black hover:bg-lavender py-1 px-3 rounded-md text-white " @click="editButtonClick">
+        <button class="bg-black hover:bg-lavender py-1 px-3 rounded-md text-white " @click="openEditModal">
                 Edit
         </button>
 
@@ -53,6 +53,10 @@
     <router-view @show="refreshList()" ></router-view>
   </div>
   </div>
+
+  <add-product v-if="editClicked" @close="changeEditItemClicked" @save-product="editProduct">
+  </add-product>
+ 
 </template>
 
 <script>
@@ -69,13 +73,24 @@ export default {
       product: [],
       colors: [],
       brands: [],
-      showModal: false
+      showModal: false,
+      editClicked: false,
+      url: " http://localhost:5000/product",
     };
   },
   methods: {
     toggleModal: function() {
       this.showModal = !this.showModal;
     },
+    changeEditItemClicked(value) {
+      this.editClicked = !value;
+    },
+    openEditModal(value) {
+      this.editClicked = value;
+    },
+    // getProduct(){
+    //   ProductService.retrieveAllProduct()
+    //   .then((response) => {
     // getProduct(){
     //   ProductService.retrieveAllProduct()
     //   .then((response) => {
