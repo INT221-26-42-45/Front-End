@@ -75,7 +75,6 @@ export default {
       brands: [],
       showModal: false,
       editClicked: false,
-      url: " http://localhost:5000/product",
     };
   },
   methods: {
@@ -88,15 +87,7 @@ export default {
     openEditModal(value) {
       this.editClicked = value;
     },
-    // getProduct(){
-    //   ProductService.retrieveAllProduct()
-    //   .then((response) => {
-    // getProduct(){
-    //   ProductService.retrieveAllProduct()
-    //   .then((response) => {
-    //     this.product = response.data;
-    //   });
-    // },
+
     retrieveProduct() {
       ProductService.get("/product")
       .then(response => {
