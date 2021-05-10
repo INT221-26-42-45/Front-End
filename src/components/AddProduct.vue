@@ -5,7 +5,7 @@
                 <div class="flex justify-end">
                     <button class="close" type="button" @click="closeModal"> X </button>
                 </div>
-                <div class="pt-3 px-64">
+                <div class="pt-3 flex justify-center">
                     <h3 class="text-3xl uppercase text-white">skór</h3>
                 </div>
 
@@ -21,19 +21,19 @@
                                 </div>
                                 <div>
                                     <label class="label">Type: </label>
-                                    <input  type="text" id="productType" name="productType"
+                                    <input  type="text" id="productType" name="productType" placeholder="Men/Women"
                                     v-model.trim="product.productType" @blur="validateProductType" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductType" class="error">"Please enter product type"</p>
                                 </div>
                                 <div>
                                     <label class="label">Price: </label>
-                                    <input  type="text" id="productPrice" name="productPrice"
+                                    <input  type="number" id="productPrice" name="productPrice"
                                     v-model.trim="product.productPrice" @blur="validateProductPrice" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductPrice" class="error">"Please enter product price"</p>
                                 </div>
                                 <div>
                                     <label class="label">Size: </label>
-                                    <input  type="text" id="productSize" name="productSize"
+                                    <input  type="textr" id="productSize" name="productSize"
                                     v-model.trim="product.productSize" @blur="validateProductSize" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductSize" class="error">"Please enter product size"</p>
                                 </div>
@@ -60,10 +60,12 @@
                                 </div>
                                 <div class=" pt-1.5">
                                     <label  class="label">Color: </label>
-                                    <div class="flex grid grid-cols-5 justify-items-start">
-                                        <div v-for="color in colors" :key="color.colorId" :value="color.colorName" >
-                                            <input type="checkbox" v-model="color.colorName" id="colors" name="colors" />
-                                           <div class=" w-8 h-8 rounded-md mx-2" :style="{ background: color.colorName }"></div>
+                                    <div class="grid grid-cols-10 justify-items-start">
+                                        <div v-for="color in colors" :key="color.colorId" :value="color.colorName">
+                                            <input type="checkbox" v-model="color.colorName" id="colors" name="colors" 
+                                               />
+                                            
+                                           <div class="appearance-none w-8 h-8 rounded-md mx-2" :style="{ background: color.colorName }"></div>
                                         </div>
                                     </div>
                                     <p v-if="invalidColors" class="error">"Please select product color"</p>
@@ -223,3 +225,9 @@ export default {
     }
 };
 </script>
+
+<style>
+input[type=checkbox]:checked{
+    background-color: white;
+}
+</style>
