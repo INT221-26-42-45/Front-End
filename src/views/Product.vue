@@ -56,6 +56,7 @@
 
   <edit-product v-if="editClicked" @close="changeEditItemClicked" @save-product="editProduct">
   </edit-product>
+  <div v-if="editClicked" class="show-modal"></div>
  
 </template>
 
@@ -95,8 +96,8 @@ export default {
       })
     },
     getProductImage(productImg){
-      return "http://localhost:9000/image/"+productImg;
-      // return "http://40.65.142.182/backend/image/"+productImg;
+      // return "http://localhost:9000/image/"+productImg;
+      return "http://40.65.142.182/backend/image/"+productImg;
     },
     refreshList() {
       this.retrieveProduct();
