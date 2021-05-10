@@ -38,7 +38,7 @@
         <p>{{"Price: "+ p.productPrice }}</p>
 
       <div >
-        <button class="bg-black hover:bg-lavender py-1 px-3 rounded-md text-white " @click="openEditModal">
+        <button class="bg-black hover:bg-lavender py-1 px-3 rounded-md text-white " @click="editProduct(p.newProduct)">
                 Edit
         </button>
 
@@ -61,7 +61,8 @@
 
 <script>
 import ProductService from '../service/ProductService';
-import AddProduct from '../components/AddProduct.vue'
+import AddProduct from '../components/AddProduct.vue';
+// import EditProduct from '../components/EditProduct.vue'
 
 export default {
   components: {
@@ -109,9 +110,6 @@ export default {
       });
 
     },
-    // deleteProduct() {
-    //   return ProductService.delete("/delete/"+this.productId);
-    // }
 
   },
     created() {

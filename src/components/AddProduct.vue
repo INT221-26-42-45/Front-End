@@ -3,7 +3,7 @@
         <div class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex justify-center items-center mb-4">
             <div class=" h-96 border-0 rounded-md shadow-lg flex flex-col w-3/4 bg-darkgray outline-none focus:outline-none">
                 <div class="flex justify-end">
-                    <button class="close" type="button" @click="closeModal"> X </button>
+                    <button class="close" type="button" @click="closeModal" > X </button>
                 </div>
                 <div class="pt-3 px-64">
                     <h3 class="text-3xl uppercase text-white">skór</h3>
@@ -16,31 +16,31 @@
                                 <div>
                                     <label class="label">Product name: </label>
                                     <input  type="text" id="productName" name="productName"
-                                    v-model.trim="product.productName" @blur="validateProductName" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2 focus:ring-2 focus:ring-orange"/>
+                                    v-model.trim="productName"   class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2 focus:ring-2 focus:ring-orange"/>
                                     <p v-if="invalidProductName" class="error">"Please enter product name"</p>
                                 </div>
                                 <div>
                                     <label class="label">Type: </label>
-                                    <input  type="text" id="productType" name="productType"
-                                    v-model.trim="product.productType" @blur="validateProductType" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    <input  type="text" id="productType" name="productType" placeholder="Men/Women"
+                                    v-model.trim="productType"  class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductType" class="error">"Please enter product type"</p>
                                 </div>
                                 <div>
                                     <label class="label">Price: </label>
-                                    <input  type="text" id="productPrice" name="productPrice"
-                                    v-model.trim="product.productPrice" @blur="validateProductPrice" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    <input  type="number"  placeholder=""
+                                    v-model.trim="productPrice"  class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductPrice" class="error">"Please enter product price"</p>
                                 </div>
                                 <div>
                                     <label class="label">Size: </label>
                                     <input  type="text" id="productSize" name="productSize"
-                                    v-model.trim="product.productSize" @blur="validateProductSize" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    v-model.trim="productSize"  class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductSize" class="error">"Please enter product size"</p>
                                 </div>
                                 <div>
                                     <label class="label">Date: </label>
                                     <input  type="Date" id="productDate" name="productDate" 
-                                    v-model.trim="product.productDate" @blur="validateProductDate" class="font-medium text-left rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
+                                    v-model.trim="productDate"  class="font-medium text-left rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2"/>
                                     <p v-if="invalidProductDate" class="error">"Please enter product date"</p>
                                 </div>
                             </div>
@@ -48,21 +48,21 @@
                                 <div>
                                     <label class="label">Description: </label>
                                     <textarea rows="4" cols="50" type="text" id="productDescription" name="productDescription"
-                                    placeholder="Enter product description ..." v-model.trim="product.productDescription" @blur="validateProductDescription" class="w-full px-3 py-2 mb-1 h-52 font-medium text-left bg-white border-2 border-orange border-opacity-50y rounded-md"/>
+                                    placeholder="Enter product description ..." v-model.trim="productDescription"  class="w-full px-3 py-2 mb-1 h-52 font-medium text-left bg-white border-2 border-orange border-opacity-50y rounded-md"/>
                                     <p v-if="invalidProductDescription" class="error">"Please enter product description"</p>
                                 </div>
                                 <div>
                                     <label class="label">Brand: </label>
-                                    <select id="brands"  v-model.trim="brands.brandName" @blur="validateBrand" name="brands" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2" >  
-                                        <option v-for="brand in brands" :key="brand.brandId">{{ brand.brandName }}</option> 
+                                    <select id="brands"  v-model.trim="selectBrand"  name="brands" class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2" >  
+                                        <option v-for="brand in brands" :value="brand"  :key="brand.brandId">{{ brand.brandName }}</option> 
                                     </select>
                                     <p v-if="invalidBrand" class="error">"Please select product brand"</p>
                                 </div>
                                 <div class=" pt-1.5">
                                     <label  class="label">Color: </label>
                                     <div class="flex grid grid-cols-5 justify-items-start">
-                                        <div v-for="color in colors" :key="color.colorId" :value="color.colorName" >
-                                            <input type="checkbox" v-model="color.colorName" id="colors" name="colors" />
+                                        <div v-for="color in colors" :key="color.colorId"  >
+                                            <input type="checkbox" v-model="selectColor" :value="color"/>
                                            <div class=" w-8 h-8 rounded-md mx-2" :style="{ background: color.colorName }"></div>
                                         </div>
                                     </div>
@@ -73,15 +73,13 @@
 
                         <div class="mt-4 mb-4 flex flex-col items-center space-y-2">
                             <label class="label">Choose a product picture (*.png, *.jpeg): </label>
-                            <input id="product.productImg" type="file" class="text-white" accept="product.productImg/png" @change="uploadPhoto" multiple
-                            ref="product.productImg"/>
+                            <input type="file" class="text-white" accept="product.productImg/png" @change="selectPic" />
                             <div class="flex justify-center">
                                 <img :src="imageUpload" class="object-cover h-60 w-30" />
                             </div>
-                            <p v-if="invalidImage" class="error">"Please enter product image"</p>
                         </div>
                         <div class=" flex flex-row justify-center space-x-2 mt-4 mb-4">
-                            <button class="bg-green-500 hover:bg-green-600 hover:text-white py-2 px-16 mx-2 rounded-full text-darkgray text-xl font-bold uppercase" @click="addProduct(newProduct)">
+                            <button class="bg-green-500 hover:bg-green-600 hover:text-white py-2 px-16 mx-2 rounded-full text-darkgray text-xl font-bold uppercase" @click="productForm" >
                                 add
                             </button>
                         </div>
@@ -89,6 +87,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -105,6 +104,14 @@ export default {
             brands: [],
             colors: [],
             product: [],
+            imageFile: null,
+            productImg: null,
+            productName: "",
+            productType: "",
+            productPrice: null,
+            productDate: "",
+            productDescription: "",
+            productSize: "",
             invalidProductName: false,
             invalidProductType: false,
             invalidProductPrice: false,
@@ -113,98 +120,75 @@ export default {
             invalidProductDescription: false,
             invalidBrands: false,
             invalidColors: false,
-            invalidImage: false
+            selectBrand: null,
+            selectColor: [],
+            image: null
         }
     },
     methods: {
         productForm() {
             this.invalidProductName = this.productName === "" ? true:false;
             this.invalidProductType = this.productType === "" ? true:false;
-            this.invalidProductPrice = this.productPrice === "" ? true:false;
+            this.invalidProductPrice = this.productPrice === null || this.productPrice === "" ? true : false;
             this.invalidProductSize = this.productSize === "" ? true:false;
             this.invalidProductDate = this.productDate === "" ? true:false;
             this.invalidProductDescription = this.productDescription === "" ? true:false;
-            this.invalidBrands = this.brands === "" ? true:false;
-            this.invalidColors = this.colors.length === 0 ? true:false;
-            this.invalidImage = this.productImg  === null ? true:false;
-            if(this.productName !== "" && this.productType !== "" && this.productPrice !== "" && this.productSize !== "" &&
-            this.productDate !== "" && this.productDescription !== "" && this.brands !== "" && this.colors.length !== 0 && this.productImg !== null ) {
-                this.addProduct({productName: this.productName, productType: this.productType, productPrice: this.productPrice,
-                productSize: this.productSize, productDate: this.productDate, productDescription: this.productDescription,
-                brands: this.brands, colors: this.colors, productImg: this.productImg });
+            this.invalidBrands = this.selectBrand === null ? true:false;
+            this.invalidColors = this.selectColor.length === 0 ? true:false;
+            console.log(this.selectColor);
+            if(this.invalidProductName || this.invalidProductType || this.invalidProductPrice ||this.invalidProductSize ||
+            this.invalidProductDate || this.invalidProductDescription || this.invalidBrands || this.invalidColors ) {
+                return;
             }
-        },
-        addProduct(newProduct) {
-            let formData = new FormData();
+
+            this.addProduct();
+            },
+        addProduct() {
+            const formData = new FormData();
             let add = {
-                productName: newProduct.productName,
-                productType: newProduct.productType,
-                productPrice: newProduct.productPrice,
-                productDate: newProduct.productDate,
-                productDescription: newProduct.productDescription,
-                brands: newProduct.brands,
-                productImg: newProduct.productImg,
-                colors: newProduct.colors
-            };
-            let productData = JSON.stringify(add);
-            formData.append("file", this.productImg,this.productImg.name);
-            formData.append("newProduct", add);
-            ProductService.post("/add"), {
-                headers:{
-                    "Content-type":"application/json",
-                },
-                body: productData
+                productName: this.productName,
+                productType: this.productType,
+                productSize: this.productSize,
+                productPrice: this.productPrice,
+                productDate: this.productDate,
+                productImg: this.productImg,
+                productDescription: this.productDescription,
+                brands: this.selectBrand,
+                colors: this.selectColor
             }
-            ProductService.post("/add").uploadPhoto(), {
-                body: formData
-            }
-           
+            const productData = JSON.stringify(add);
+            const blob = new Blob([productData], {
+                type: 'application/json'
+            });
+            
+            formData.append('file', this.imageFile);
+            formData.append('newProduct', blob);
+            
+            ProductService.post("/add", formData, {
+                headers: {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            }).then(response => {
+                response.status === 200 ? alert("Add") : alert("Error")
+                this.refreshList();
+                this.$router.push('/product');
+            })
         },
-        
         closeModal(){
             this.$emit("close", true);
         },
-        uploadPhoto(u) {
-            const file = u.target.files[0] || u.dataTransfer.files[0];
-            const reader = new FileReader();
-            reader.onload = (u) => {
-                this.imageUpload = u.target.result;
+        selectPic(s) {
+            const file = s.target.files[0];
+            this.image = URL.createObjectURL(file);
+            this.productImg = file.name;
+            this.imageFile = file;
+            let reader = new FileReader();
+            reader.onload = (s) => {
+                this.imageUpload = s.target.result;
             };
             reader.readAsDataURL(file);
         },
     
-        validateProductName(){
-            this.invalidProductName = this.productName === '' ? true : false
-            console.log(`productName: ${this.invalidProductName}`);
-        },
-        validateProductType(){
-            this.invalidProductType = this.productType === '' ? true : false
-            console.log(`productType: ${this.invalidProductType}`);
-        },
-        validateProductPrice(){
-            this.invalidProductPrice = this.productPrice === '' ? true : false
-            console.log(`productPrice: ${this.invalidProductPrice}`);
-        },
-        validateProductSize(){
-            this.invalidProductSize = this.productSize === '' ? true : false
-            console.log(`productSize: ${this.invalidProductSize}`);
-        },
-        validateProductDate(){
-            this.invalidProductDate = this.productDate === '' ? true : false
-            console.log(`productDate: ${this.invalidProductDate}`);
-        },
-        validateProductDescription(){
-            this.invalidProductDescription = this.productDetail === '' ? true : false
-            console.log(`productDetail: ${this.invalidProductDescription}`);
-        },
-        validateBrand(){
-            this.invalidBrands = this.Brands === '' ? true : false
-            console.log(`productBrand: ${this.invalidBrands}`);
-        },
-        validateColor(){
-            this.invalidColors = this.Colors === '' ? true : false
-            console.log(`productBrand: ${this.invalidColors}`);
-        },
         listBrand(){
             ProductService.get("/brand").then(response => {
                 this.brands = response.data;
@@ -214,9 +198,8 @@ export default {
             ProductService.get("/color").then(response => {
                 this.colors = response.data;
             })
-        }
-   
-    },
+        },
+},
     created() {
     this.listBrand();
     this.listColor();
