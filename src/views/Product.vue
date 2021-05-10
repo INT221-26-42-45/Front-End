@@ -13,7 +13,7 @@
     <div v-if="showModal" class="show-modal"></div>
  
     <div class="grid md:grid-cols-3 sm:grid-cols-1 text-left justify-items-center  ">  
-      <div v-for="p in product" :key="p.productId" class="mx-10 text-sm ">
+      <div v-for="p in product" :key="p.productId" :id="p.productId" class="mx-10 text-sm ">
         <div class="piece rounded-md">
         
         <img class="pic" :src="getProductImage(p.productImg)"/>
@@ -63,14 +63,12 @@
 import ProductService from '../service/ProductService';
 import AddProduct from '../components/AddProduct.vue';
 import EditProduct from '../components/EditProduct.vue';
-// import EditProduct from '../components/EditProduct.vue'
-
 export default {
   components: {
     AddProduct,
     EditProduct
   },
-
+  props: ["productId"],
   data(){
     return {
       product: [],
@@ -90,7 +88,6 @@ export default {
     openEditModal(value) {
       this.editClicked = value;
     },
-
     retrieveProduct() {
       ProductService.get("/product")
       .then(response => {
@@ -110,9 +107,7 @@ export default {
         this.refreshList();
         this.$router.push('/product');
       });
-
     },
-
   },
     created() {
     this.retrieveProduct();
