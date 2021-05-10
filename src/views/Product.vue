@@ -1,6 +1,6 @@
 <template>
   <div class=" w-full  md:overflow-hidden">
-    <div class="text-base px-5 pt-4 md:flex md:items-stretch md:justify-end ml-auto">
+    <div class="text-base px-5 pt-4 md:flex md:items-stretch md:justify-end ">
       <router-link to="/product" class="text-black hover:text-black">
         <button @click="toggleModal" class="hover:bg-black hover:text-pink py-3 px-3 mx-2 rounded-md text-darkgray text-xl font-bold">
           Add Product
@@ -99,6 +99,7 @@ export default {
     },
     getProductImage(productImg){
       return "http://localhost:9000/image/"+productImg;
+      // return "http://40.65.142.182/backend/image/"+productImg;
     },
     refreshList() {
       this.retrieveProduct();
