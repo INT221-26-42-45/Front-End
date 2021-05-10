@@ -79,8 +79,8 @@
                             </div>
                         </div>
                         <div class=" flex flex-row justify-center space-x-2 mt-4 mb-4">
-                            <button class="bg-green-500 hover:bg-green-600 hover:text-white py-2 px-16 mx-2 rounded-full text-darkgray text-xl font-bold uppercase" @click="productForm" >
-                                add
+                            <button class="bg-lavender hover:bg-lavender hover:text-white py-2 px-16 mx-2 rounded-full text-darkgray text-xl font-bold uppercase" @click="productForm" >
+                                Edit
                             </button>
                         </div>
                     </form>
@@ -94,9 +94,10 @@
 <script>
 import imageUpload from "../assets/imageupload.png";
 import ProductService from '../service/ProductService.js';
+
 export default {
     name: "edit-product",
-    props: ["imageDb"],
+    props: ["imageDb", "id"],
     emits: ["close", "save-product"],
     data() {
         return {
@@ -122,7 +123,9 @@ export default {
             invalidColors: false,
             selectBrand: null,
             selectColor: [],
-            image: null
+            image: null,
+            submitEdit: null,
+            productId: this.id
         }
     },
     methods: {
@@ -135,17 +138,17 @@ export default {
             this.invalidProductDescription = this.productDescription === "" ? true:false;
             this.invalidBrands = this.selectBrand === null ? true:false;
             this.invalidColors = this.selectColor.length === 0 ? true:false;
-            console.log(this.selectColor);
             if(this.invalidProductName || this.invalidProductType || this.invalidProductPrice ||this.invalidProductSize ||
             this.invalidProductDate || this.invalidProductDescription || this.invalidBrands || this.invalidColors ) {
                 return;
             }
-
-            this.addProduct();
+            this.updateProduct();
             },
-        addProduct() {
+    updateProduct(update) {
             const formData = new FormData();
-            let add = {
+            this.productId = update.productId;
+            let edit = {
+                productId: this.productId,
                 productName: this.productName,
                 productType: this.productType,
                 productSize: this.productSize,
@@ -156,7 +159,7 @@ export default {
                 brands: this.selectBrand,
                 colors: this.selectColor
             }
-            const productData = JSON.stringify(add);
+            const productData = JSON.stringify(edit);
             const blob = new Blob([productData], {
                 type: 'application/json'
             });
@@ -164,20 +167,18 @@ export default {
             formData.append('file', this.imageFile);
             formData.append('newProduct', blob);
             
-            ProductService.post("/add", formData, {
+            ProductService.put("/edit/"+ this.productId, formData, {
                 headers: {
                     'Content-Type' : 'multipart/form-data'
                 }
             }).then(response => {
-                response.status === 200 ? alert("Add") : alert("Error")
-                this.refreshList();
-                this.$router.push('/product');
+                response.status === 200 ? alert("Edit") : alert("Error")
             })
         },
-        closeModal(){
+      closeModal(){
             this.$emit("close", true);
         },
-        selectPic(s) {
+      selectPic(s) {
             const file = s.target.files[0];
             this.image = URL.createObjectURL(file);
             this.productImg = file.name;
@@ -189,17 +190,30 @@ export default {
             reader.readAsDataURL(file);
         },
     
-        listBrand(){
+      listBrand(){
             ProductService.get("/brand").then(response => {
                 this.brands = response.data;
             });
         },
-        listColor(){
+      listColor(){
             ProductService.get("/color").then(response => {
                 this.colors = response.data;
             })
         },
-},
+      editProduct(product) {
+        this.productName = product.productName;
+        this.productPrice = product.productPrice;
+        this.productType = product.productType;
+        this.productSize = product.productSize;
+        this.productPrice = product.productPrice;
+        this.productDate = product.productDate;
+        this.productDescription = product.productDescription;
+        this.selectBrand = product.brands;
+        this.selectColor = product.colors;
+        this.submitEdit = product;
+      }
+
+  },
     created() {
     this.listBrand();
     this.listColor();
