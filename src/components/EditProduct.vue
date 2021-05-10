@@ -14,7 +14,7 @@
                         <div class="flex flex-row justify-around mt-2 space-x-5">
                             <div class="mt-2 w-2/5 space-y-2">
                                 <div>
-                                    <label class="label">Product name: </label>
+                                    <label class="label">Product Name: </label>
                                     <input  type="text" id="productName" name="productName"
                                     v-model.trim="productName"   class="font-medium rounded-md border-2 border-orange border-opacity-50y w-full px-3 py-2 focus:ring-2 focus:ring-orange"/>
                                     <p v-if="invalidProductName" class="error">"Please enter product name"</p>
@@ -95,7 +95,7 @@
 import imageUpload from "../assets/imageupload.png";
 import ProductService from '../service/ProductService.js';
 export default {
-    name: "add-product",
+    name: "edit-product",
     props: ["imageDb"],
     emits: ["close", "save-product"],
     data() {
@@ -206,9 +206,3 @@ export default {
     }
 };
 </script>
-
-<style>
-input[type=checkbox]:checked{
-    background-color: white;
-}
-</style>

@@ -54,18 +54,21 @@
   </div>
   </div>
 
-  <add-product v-if="editClicked" @close="changeEditItemClicked" @save-product="editProduct">
-  </add-product>
+  <edit-product v-if="editClicked" @close="changeEditItemClicked" @save-product="editProduct">
+  </edit-product>
  
 </template>
 
 <script>
 import ProductService from '../service/ProductService';
-import AddProduct from '../components/AddProduct.vue'
+import AddProduct from '../components/AddProduct.vue';
+import EditProduct from '../components/EditProduct.vue';
+// import EditProduct from '../components/EditProduct.vue'
 
 export default {
   components: {
-    AddProduct
+    AddProduct,
+    EditProduct
   },
 
   data(){
@@ -109,9 +112,6 @@ export default {
       });
 
     },
-    // deleteProduct() {
-    //   return ProductService.delete("/delete/"+this.productId);
-    // }
 
   },
     created() {

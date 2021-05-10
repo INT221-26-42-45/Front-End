@@ -13,7 +13,8 @@ import axios from "axios";
 // export default new ProductService();
 
 export default axios.create({
-    baseURL: "http://52.187.146.93/backend",
+    baseURL: "http://localhost:9000",
+    // baseURL: "http://52.187.146.93/backend",
     headers: {
         "Content-type": "application/json",
     }
