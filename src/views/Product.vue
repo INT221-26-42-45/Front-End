@@ -1,6 +1,6 @@
 <template>
   <div class=" w-full  md:overflow-hidden">
-    <div class="text-base px-5 pt-4 md:flex md:items-stretch md:justify-end ml-auto">
+    <div class="text-base px-5 pt-4 md:flex md:items-stretch md:justify-end">
       <router-link to="/product" class="text-black hover:text-black">
         <button @click="toggleModal" class="hover:bg-black hover:text-pink py-3 px-3 mx-2 rounded-md text-darkgray text-xl font-bold">
           Add Product
@@ -13,7 +13,7 @@
     <div v-if="showModal" class="show-modal"></div>
  
     <div class="grid md:grid-cols-3 sm:grid-cols-1 text-left justify-items-center  ">  
-      <div v-for="p in product" :key="p.productId" :id="p.productId" class="mx-10 text-sm ">
+      <div v-for="p in product" :key="p.productId"  class="mx-10 text-sm ">
         <div class="piece rounded-md">
         
         <img class="pic" :src="getProductImage(p.productImg)"/>
@@ -68,7 +68,6 @@ export default {
     AddProduct,
     EditProduct
   },
-  props: ["productId"],
   data(){
     return {
       product: [],
@@ -95,7 +94,7 @@ export default {
       })
     },
     getProductImage(productImg){
-      return "http://localhost:9000/image/"+productImg;
+      return "http://40.65.142.182/backend/image/"+productImg;
     },
     refreshList() {
       this.retrieveProduct();

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex justify-center items-center mb-4">
-            <div class=" h-96 border-0 rounded-md shadow-lg flex flex-col w-3/4 bg-darkgray outline-none focus:outline-none">
+            <div class=" h-96 border-0 rounded-md shadow-lg flex flex-col lg:w-3/4 md:w-1/2 bg-darkgray outline-none focus:outline-none">
                 <div class="flex justify-end">
                     <button class="close" type="button" @click="closeModal" > X </button>
                 </div>
@@ -11,7 +11,7 @@
 
                 <div class=" bg-darkgray rounded-md px-4">
                     <form @submit.prevent="productForm">
-                        <div class="flex flex-row justify-around mt-2 space-x-5">
+                        <div class="flex flex-row justify-around mt-2 space-x-5 md:flex-col">
                             <div class="mt-2 w-2/5 space-y-2">
                                 <div>
                                     <label class="label">Product name: </label>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class=" pt-1.5">
                                     <label  class="label">Color: </label>
-                                    <div class="flex grid grid-cols-5 justify-items-start">
+                                    <div class="flex grid grid-cols-10 justify-items-start">
                                         <div v-for="color in colors" :key="color.colorId"  >
                                             <input type="checkbox" v-model="selectColor" :value="color"/>
                                            <div class=" w-8 h-8 rounded-md mx-2" :style="{ background: color.colorName }"></div>
@@ -155,7 +155,7 @@ export default {
                 productDescription: this.productDescription,
                 brands: this.selectBrand,
                 colors: this.selectColor
-            }
+            },
             const productData = JSON.stringify(add);
             const blob = new Blob([productData], {
                 type: 'application/json'
@@ -170,9 +170,10 @@ export default {
                 }
             }).then(response => {
                 response.status === 200 ? alert("Add") : alert("Error")
-                this.refreshList();
-                this.$router.push('/product');
-            })
+            }).catch(error => {
+            let errorObject=JSON.parse(JSON.stringify(error));
+            console.log(errorObject);
+            })     
         },
         closeModal(){
             this.$emit("close", true);
